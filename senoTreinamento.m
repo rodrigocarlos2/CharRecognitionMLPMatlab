@@ -22,16 +22,16 @@ disp (Desejado)
 In = 1;
 
 %Quantidade de neurônios na camada Escondida H
-H = 4;
+H = 14;
 
 %Quantidade de neurônios na camada de Saida Out
 Out = 1; 
 
 %Definindo a taxa de aprendizagem - Valor Eta.
-eta = 0.000002;
+eta = 0.0006;
 
 %Quantidade de épocas
-Epocas = 4000; 
+Epocas = 9000; 
 
 %Se a função de ativação é linear, então Defini-se o valor da constante k.
 k = 1; 
