@@ -2,9 +2,12 @@
 
 %Cria 100 valores de entrada
 %EntradaTeste = -pi:pi/499.8:pi;
-EntradaTeste = rand(1, 100)*2*pi-pi;
+EntradaTeste = [
+    % 0
+    0 0 0;
+    ];
 
-Desejado = sin(EntradaTeste);
+Desejado = 0;
 
 disp (EntradaTeste)
 disp (Desejado)
@@ -16,13 +19,13 @@ disp (Desejado)
 In = 1;
 
 %Quantidade de neurônios na camada Escondida H
-H = 4;
+H = 5;
 
 %Quantidade de neurônios na camada de Saida Out
 Out = 1; 
 
 %Definindo a taxa de aprendizagem - Valor Eta.
-eta = 0.000002;
+eta = 0.000025;
 
 %Se a função de ativação é linear, então Defini-se o valor da constante k.
 k = 1; 

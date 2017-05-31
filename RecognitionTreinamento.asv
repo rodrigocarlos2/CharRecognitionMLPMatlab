@@ -1,0 +1,90 @@
+clear; clc;close all;
+
+Entrada = [
+% 0
+0 0 1;
+% 1
+0 1 1;
+% 2
+1 1 1;
+];
+
+Desejado = [0 1 2];
+
+disp (Entrada);
+disp (Desejado);
+
+In = 1;
+
+H = 5;
+
+Out = 1;
+
+eta = 0.000025;
+
+Epocas = 2000;
+
+k = 1; 
+
+grafico_erro = [];
+
+Whi = rand(H,In) - 0.5;
+Woh = rand(Out,H) - 0.5;
+    
+%load pesos9 Woh Whi
+
+for In=0:Epocas
+    
+    %Calculo da entrada da camada escondida.
+    net_h = Whi*Entrada(;
+     
+    %Calculo da sa?da da camada escondida - aplicar fun??o de ativa??o.
+    Output_h = logsig(net_h);
+             
+    %Calculo da entrada da camada de sa?da. 
+    net_o = Woh*Output_h;
+  
+    %Calcular a sa?da da camada de sa?da (Sa?da da RNA).
+    
+    %calculo do valor da sa?da:
+    Output = k*net_o;
+         
+    %Calcular o erro da sa?da.
+    Erro = Desejado - Output;
+    
+            df = k*ones(size(net_o));
+                             
+            delta_Woh = eta*(Erro(1).*df)*Output_h';
+
+            Erro_r = Woh'*(Erro.*df);
+        
+            df = logsig(net_h)-(logsig(net_h).^2);
+            
+            %Cálculo do delta Whi.
+            delta_Whi = eta*(Erro_r(1).*df)*Entrada(1)';
+            
+            %Cálculo dos novos pesos.
+            Whi = Whi+delta_Whi;
+            Woh = Woh+delta_Woh;
+        
+            %Cálculo do Erro Quadrático Médio.
+            emq = sqrt(sum(Erro.^2))/size(Erro,2);
+            grafico_erro = [grafico_erro emq];
+        
+end
+
+%Imprime o gráfico referente ao Erro Quadrático Médio.
+figure(1);
+plot(grafico_erro, 'r');
+hold on;
+grid on;
+disp(In);
+xlabel('Épocas');
+ylabel('Erro (EQM)');
+legend('Erro Quadrático Médio');
+
+%Grava os pesos atuais para posteriores operações.
+save pesos1 Woh Whi
+
+%Grava pesos para serem utilizados no teste de generalização
+save pesoteste Woh Whi
