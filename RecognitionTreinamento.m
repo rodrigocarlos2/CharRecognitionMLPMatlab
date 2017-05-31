@@ -1,9 +1,6 @@
 
-%Autor: Filipe Fontinele - Tabalho baseado em redes neurais MLP com treinamento BP
-%exemplificado com a fun??o seno.
+%Autor: Rodrigo Leal
 
-%limpa todos os valores passados ao matlab, necess?rio para evitar
-%poss?veis interfer?ncias de valores indesejados.
 clear; clc;close all;
 
 %Dados de entrada e o desejado, criando o gr?fico inicial.

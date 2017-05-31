@@ -1,33 +1,31 @@
-%Dados de entrada e o desejado, criando o gráfico inicial.
+
+%Dados de entrada e o desejado, criando o gr?fico inicial.
 
 %Cria 100 valores de entrada
-%EntradaTeste = -pi:pi/499.8:pi;
-EntradaTeste = [
-    % 0
-    0 0 0;
-    ];
 
-Desejado = 0;
+EntradaTeste = [10001];
+
+Desejado = [1];
 
 disp (EntradaTeste)
 disp (Desejado)
 
-%Treinamento da Rede Neural Artificial (RNA) para resolução da função
+%Treinamento da Rede Neural Artificial (RNA) para resolu??o da fun??o
 %Seno.
 
-%Quantidades de neurônios na camada de Entrada In
+%Quantidades de neur?nios na camada de Entrada In
 In = 1;
 
-%Quantidade de neurônios na camada Escondida H
+%Quantidade de neur?nios na camada Escondida H
 H = 5;
 
-%Quantidade de neurônios na camada de Saida Out
-Out = 1; 
+%Quantidade de neur?nios na camada de Saida Out
+Out = 1;
 
 %Definindo a taxa de aprendizagem - Valor Eta.
-eta = 0.000025;
+eta = 0.00004;
 
-%Se a função de ativação é linear, então Defini-se o valor da constante k.
+%Se a fun??o de ativa??o ? linear, ent?o Defini-se o valor da constante k.
 k = 1; 
 
 %Algoritmo
@@ -40,16 +38,16 @@ load pesoteste Woh Whi
     %Calculo da entrada da camada escondida.
     net_h = Whi*EntradaTeste;
      
-    %Calculo da saída da camada escondida - aplicar função de ativação.
+    %Calculo da sa?da da camada escondida - aplicar fun??o de ativa??o.
     Output_h = logsig(net_h);
              
-    %Calculo da entrada da camada de saída. 
+    %Calculo da entrada da camada de sa?da. 
     net_o = Woh*Output_h;
   
-    %Calcular a saída da camada de saída (Saída da RNA).
+    %Calcular a sa?da da camada de sa?da (Sa?da da RNA).
     
-    %calculo do valor da saída:
+    %calculo do valor da sa?da:
     Output = k*net_o;
          
-    %Calcular o erro da saída.
+    %Calcular o erro da sa?da.
     Erro = Desejado - Output;
