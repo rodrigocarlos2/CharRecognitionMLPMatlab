@@ -1,56 +1,60 @@
+%Autor: Filipe Fontinele - Tabalho baseado em redes neurais MLP com treinamento BP
+%exemplificado com a fun??o seno.
 
-% Autor: Rodrigo Leal
-
+%limpa todos os valores passados ao matlab, necess?rio para evitar
+%poss?veis interfer?ncias de valores indesejados.
 clear; clc;close all;
 
 %Dados de entrada e o desejado, criando o gr?fico inicial.
 
 %Cria 1000 valores de entrada
-Entrada = [1 2 2 2 1; 1 2 2 1 1; 1 2 1 1 1; 2 2 2 1 1; 1 1 1 1 1];
+Entrada = -pi:pi/499.8:pi;
 
-% Função de Saída
-Desejado = [1 2 3 4 5];
+Desejado = sin(Entrada);
 
 disp (Entrada)
 disp (Desejado)
 
-%Quantidades de neurônios na camada de Entrada In
-In = 5;
+%Treinamento da Rede Neural Artificial (RNA) para resolu??o da fun??o
+%Seno.
 
-%Quantidade de neurônios na camada Escondida H
-H = 8;
+%Quantidades de neur?nios na camada de Entrada In
+In = 1;
 
-%Quantidade de neurônios na camada de Saida Out
+%Quantidade de neur?nios na camada Escondida H
+H = 23;
+
+%Quantidade de neur?nios na camada de Saida Out
 Out = 1;
 
 %Definindo a taxa de aprendizagem - Valor Eta.
-eta = 0.00022;
+eta = 0.0002435223;
 
-%Quantidade de Épocas
-Epocas = 5000;
+%Quantidade de ?pocas
+Epocas = 13140;
 
-%Se a fun??o de ativação é linear, então Defini-se o valor da constante k.
+%Se a fun??o de ativa??o ? linear, ent?o Defini-se o valor da constante k.
 k = 1; 
 
-% Matriz que imprime o gráfico do erro quadrático médio
+%Matriz que imprime o gr?fico do erro quadr?tido m?dio
 grafico_erro = [];
 
-% Algoritmo
+%Algoritmo
 
-% Iniciando os Pesos - Primeiro Teste - logo apps a primeira inicialização,
-% comentar código.
+%Iniciando os Pesos - Primeiro Teste - logo ap?s a primeira inicializa??o,
+%comentar c?digo.
     
-    Whi = rand(H,In) - 0.5;
-    Woh = rand(Out,H) - 0.5;
+    %Whi = rand(H,In) - 0.5;
+    %Woh = rand(Out,H) - 0.5;
     
-%load pesos15 Woh Whi
+load pesos15 Woh Whi
 
 for In=0:Epocas
     
     %Calculo da entrada da camada escondida.
     net_h = Whi*Entrada;
      
-    %Calculo da sa?da da camada escondida - aplicar funçãoo de ativação.
+    %Calculo da sa?da da camada escondida - aplicar fun??o de ativa??o.
     Output_h = logsig(net_h);
              
     %Calculo da entrada da camada de sa?da. 
@@ -64,13 +68,13 @@ for In=0:Epocas
     %Calcular o erro da sa?da.
     Erro = Desejado - Output;
 
-            %Backpropagation para recalcular os pesos, calculando a variação 
+            %Backpropagation para recalcular os pesos, calculando a varia??o 
             %dos pesos entre Woh.
            
             %C?lculo da derivada.
             df = k*ones(size(net_o));
                              
-            %C?lculo do delta Woh, valor da variação.
+            %C?lculo do delta Woh, valor da varia??o.
             delta_Woh = eta*(Erro.*df)*Output_h';
 
             %C?lculo do erro retropopagado.
@@ -87,24 +91,31 @@ for In=0:Epocas
             Whi = Whi+delta_Whi;
             Woh = Woh+delta_Woh;
         
-            %C?lculo do Erro Quadrático M?dio.
+            %C?lculo do Erro Quadr?tico M?dio.
             emq = sqrt(sum(Erro.^2))/size(Erro,2);
             grafico_erro = [grafico_erro emq];
         
 end
 
-%Imprime o gr?fico referente ao Erro Quadr?tico M?dio.
+%Imprime o gr?fico referente ao seno esperado e o seno obtido.
 figure(1);
+plot(Entrada, Output,'g', Entrada, Desejado,'black');
+hold on;
+grid on;
+title('Seno esperado (Preto) e o Seno obtido (Verde)');
+
+%Imprime o gr?fico referente ao Erro Quadr?tico M?dio.
+figure(2);
 plot(grafico_erro, 'r');
 hold on;
 grid on;
 disp(In);
-xlabel('Épocas');
+xlabel('?pocas');
 ylabel('Erro (EQM)');
-legend('Erro Quadrático Médio');
+legend('Erro Quadr?tico M?dio');
 
 %Grava os pesos atuais para posteriores opera??es.
-save pesos2 Woh Whi
+save pesos90 Woh Whi
 
 %Grava pesos para serem utilizados no teste de generaliza??o
 save pesoteste Woh Whi
