@@ -3,10 +3,10 @@
 
 %Cria 100 valores de entrada
 
-EntradaTeste = [2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1; 1 2 2 1 1 1 2 1 1 2 1 2 1 1 2 2; 1 2 1 1 1 2 2 1 2 1 1 2 2 2 1 1; 2 2 2 1 1 2 2 2 2 2 2 1 1 2 2 2; 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1; 1 1 1 1 1 1 2 1 1 2 2 2 2 1 2 2; 1 1 1 1 1 2 2 1 2 1 1 1 1 2 1 1; 1 1 1 1 1 2 2 2 2 2 1 2 1 2 2 2; 1 1 1 1 1 2 2 2 1 1 1 2 2 1 1 1; 1 1 1 1 1 2 2 2 1 2 2 1 1 1 2 2; 1 1 1 1 1 2 2 2 1 2 2 1 2 2 1 1; 1 1 1 1 1 2 2 2 1 2 2 2 1 2 2 2; 1 1 1 1 1 2 2 2 1 2 2 2 2 1 1 1; 1 1 1 1 1 2 2 2 1 2 2 2 2 1 2 2; 1 1 1 1 1 2 2 2 1 2 2 2 2 2 1 1; 1 1 1 1 1 2 2 2 1 2 2 2 2 2 1 2];
+EntradaTeste = [1 2 2 2 2 1; 1 2 1 2 1 1; 1 2 1 1 1 1; 2 2 2 1 1 1; 1 1 1 2 2 2; 1 1 1 1 1 1];
 
 % Função de Saída
-Desejado = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16];
+Desejado = [1 2 3 4 5 6];
 
 disp (EntradaTeste)
 disp (Desejado)
@@ -15,7 +15,7 @@ disp (Desejado)
 %Seno.
 
 %Quantidades de neurônios na camada de Entrada In
-In = 16;
+In = 5;
 
 %Quantidade de neurônios na camada Escondida H
 H = 8;

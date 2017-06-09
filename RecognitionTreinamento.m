@@ -1,4 +1,5 @@
 
+
 % Autor: Rodrigo Leal
 
 clear; clc;close all;
@@ -6,39 +7,39 @@ clear; clc;close all;
 %Dados de entrada e o desejado, criando o gr?fico inicial.
 
 %Cria 1000 valores de entrada
-Entrada = [1 2 2 2 1; 1 2 2 1 1; 1 2 1 1 1; 2 2 2 1 1; 1 1 1 1 1];
+Entrada = [1 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1; 1 2 2 1 1 1 2 1 1 2 1 2 1 1 2 2; 1 2 1 1 1 2 2 1 2 1 1 2 2 2 1 1; 2 2 2 1 1 2 2 2 2 2 2 1 1 2 2 2; 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1; 1 1 1 1 1 1 2 1 1 2 2 2 2 1 2 2; 1 1 1 1 1 2 2 1 2 1 1 1 1 2 1 1; 1 1 1 1 1 2 2 2 2 2 1 2 1 2 2 2; 1 1 1 1 1 2 2 2 1 1 1 2 2 1 1 1; 1 1 1 1 1 2 2 2 1 2 2 1 1 1 2 2; 1 1 1 1 1 2 2 2 1 2 2 1 2 2 1 1; 1 1 1 1 1 2 2 2 1 2 2 2 1 2 2 2; 1 1 1 1 1 2 2 2 1 2 2 2 2 1 1 1; 1 1 1 1 1 2 2 2 1 2 2 2 2 1 2 2; 1 1 1 1 1 2 2 2 1 2 2 2 2 2 1 1; 1 1 1 1 1 2 2 2 1 2 2 2 2 2 1 2];
 
-% Função de Saída
-Desejado = [1 2 3 4 5];
+% Fun??o de Sa?da
+Desejado = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16];
 
 disp (Entrada)
 disp (Desejado)
 
-%Quantidades de neurônios na camada de Entrada In
-In = 5;
+%Quantidades de neur?nios na camada de Entrada In
+In = 16;
 
-%Quantidade de neurônios na camada Escondida H
+%Quantidade de neur?nios na camada Escondida H
 H = 8;
 
-%Quantidade de neurônios na camada de Saida Out
+%Quantidade de neur?nios na camada de Saida Out
 Out = 1;
 
 %Definindo a taxa de aprendizagem - Valor Eta.
 eta = 0.00022;
 
-%Quantidade de Épocas
+%Quantidade de ?pocas
 Epocas = 5000;
 
-%Se a fun??o de ativação é linear, então Defini-se o valor da constante k.
+%Se a fun??o de ativa??o ? linear, ent?o Defini-se o valor da constante k.
 k = 1; 
 
-% Matriz que imprime o gráfico do erro quadrático médio
+% Matriz que imprime o gr?fico do erro quadr?tico m?dio
 grafico_erro = [];
 
 % Algoritmo
 
-% Iniciando os Pesos - Primeiro Teste - logo apps a primeira inicialização,
-% comentar código.
+% Iniciando os Pesos - Primeiro Teste - logo apps a primeira inicializa??o,
+% comentar c?digo.
     
     Whi = rand(H,In) - 0.5;
     Woh = rand(Out,H) - 0.5;
@@ -50,7 +51,7 @@ for In=0:Epocas
     %Calculo da entrada da camada escondida.
     net_h = Whi*Entrada;
      
-    %Calculo da sa?da da camada escondida - aplicar funçãoo de ativação.
+    %Calculo da sa?da da camada escondida - aplicar fun??oo de ativa??o.
     Output_h = logsig(net_h);
              
     %Calculo da entrada da camada de sa?da. 
@@ -64,13 +65,13 @@ for In=0:Epocas
     %Calcular o erro da sa?da.
     Erro = Desejado - Output;
 
-            %Backpropagation para recalcular os pesos, calculando a variação 
+            %Backpropagation para recalcular os pesos, calculando a varia??o 
             %dos pesos entre Woh.
            
             %C?lculo da derivada.
             df = k*ones(size(net_o));
                              
-            %C?lculo do delta Woh, valor da variação.
+            %C?lculo do delta Woh, valor da varia??o.
             delta_Woh = eta*(Erro.*df)*Output_h';
 
             %C?lculo do erro retropopagado.
@@ -87,7 +88,7 @@ for In=0:Epocas
             Whi = Whi+delta_Whi;
             Woh = Woh+delta_Woh;
         
-            %C?lculo do Erro Quadrático M?dio.
+            %C?lculo do Erro Quadr?tico M?dio.
             emq = sqrt(sum(Erro.^2))/size(Erro,2);
             grafico_erro = [grafico_erro emq];
         
@@ -99,9 +100,9 @@ plot(grafico_erro, 'r');
 hold on;
 grid on;
 disp(In);
-xlabel('Épocas');
+xlabel('?pocas');
 ylabel('Erro (EQM)');
-legend('Erro Quadrático Médio');
+legend('Erro Quadr?tico M?dio');
 
 %Grava os pesos atuais para posteriores opera??es.
 save pesos2 Woh Whi
